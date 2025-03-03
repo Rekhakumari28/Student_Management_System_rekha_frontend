@@ -73,7 +73,7 @@ const ClassView = () => {
             </select>
           </div>
         </div>
-        <ul>
+        <ul className="list-group my-3 ">
           {status === "Loading" && (
             <p className="bg-success-subtle text-success-emphasis p-3 rounded">
               {status}
@@ -86,9 +86,12 @@ const ClassView = () => {
           )}
           {sortedStudents.length > 0 &&
             sortedStudents?.map((student) => (
-              <li key={student._id}>
+              <li key={student._id} className="list-group-item " style={{width: "40%"}}>
+                <p className="ms-3 mb-1">
+
                 {student.name} - {student.gender} - Marks: {student.marks} -
                 Attendance: {student.attendance}
+                </p>
               </li>
             ))}
         </ul>
