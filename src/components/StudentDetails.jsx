@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Header } from "./Header";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteStudentAsync } from "../features/students/studentsSlice";
-
+import toast, { Toaster }  from "react-hot-toast";
 const StudentDetails = () => {
   const studentId = useParams();
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ const StudentDetails = () => {
 
   const handleDelete = (studentId) => {
     dispatch(deleteStudentAsync(studentId));
+    toast.success('Student data deleted successfully!')
     setTimeout(() => {
       navigate("/");
     }, 3000);
@@ -53,7 +54,12 @@ const StudentDetails = () => {
             >
               Delete
             </button>
+            
           </p>
+          <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
         </div>
       </div>
     </>

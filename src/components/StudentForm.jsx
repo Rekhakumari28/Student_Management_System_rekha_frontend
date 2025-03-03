@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchStudents, addStudentAsync, updateStudentAsync } from "../features/students/studentsSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { Header } from "./Header";
+import toast, { Toaster } from "react-hot-toast";
 
 const StudentForm = () => {
   const [name, setName] = useState("");
@@ -25,7 +26,7 @@ const StudentForm = () => {
 
  const studentExisting =studentId.studentId && students.find(student=> student._id == studentId.studentId)
 
-  console.log(studentExisting, "studentExisting")
+  
     const existing = Boolean(studentExisting)  
 
   useEffect(() => {
@@ -54,6 +55,7 @@ const StudentForm = () => {
       setAge("")
       setGrade("")
       setGender("")
+      toast.success('New Student added!')
     } else {
       const updateStudent = {
         name: name,
@@ -76,6 +78,7 @@ const StudentForm = () => {
       setGender("")
       setAttendance("")
       setMarks("")
+      toast.success('Student data updated!')
       setTimeout(()=>{
         navigate(`/`)
     }, 3000)
@@ -163,6 +166,10 @@ const StudentForm = () => {
         
         <button className="btn btn-primary my-2" type="submit">{existing ? "Update" : "Add"}</button>
       </form>
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
       </div>
     </div>
   );

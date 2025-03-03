@@ -3,6 +3,7 @@ import { Header } from './Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTeacherAsync, fetchTeachers, updateTeacherAsync } from '../features/teachers/teacherSlice';
+import toast, { Toaster } from 'react-hot-toast';
 
 const TeacherForm = () => {
       const [name, setName] = useState("");
@@ -57,6 +58,7 @@ const TeacherForm = () => {
           setAge("")
           setEmail("")
           setGender("")
+          toast.success('Teacher added!')
         } else {
           const updateTeacher = {
             name: name,
@@ -81,6 +83,7 @@ const TeacherForm = () => {
           setExperience("")
           setPhone("")
           setSubject("")
+          toast.success('Teacher data updated!')
           setTimeout(()=>{
             navigate(`/teachers`)
         }, 3000)
@@ -178,6 +181,10 @@ const TeacherForm = () => {
             
             <button className="btn btn-primary my-2" type="submit">{existing ? "Update" : "Add"}</button>
           </form>
+          <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
           </div>
         </div>
   )
